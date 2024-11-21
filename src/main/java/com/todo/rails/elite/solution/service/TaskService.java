@@ -46,6 +46,8 @@ public class TaskService {
 	 */
 	private final TaskRepository taskRepository;
 
+	// TODO 16: Log Exceptions. Use SLF4J to log exceptions in the service and controller layers.
+
 	/**
 	 * Constructor for TaskService.
 	 *
