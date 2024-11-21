@@ -18,6 +18,7 @@ public class User {
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
+	// TODO 5: update the user model
 	@Column(name = "roles", nullable = false)
 	private String roles;
 
@@ -63,12 +64,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getRoles() {
-		return roles;
-	}
-
 	public void setRoles(String roles) {
 		this.roles = roles;
+	}
+
+	public String getRoles() {
+		return roles;
 	}
 
 	@Override
