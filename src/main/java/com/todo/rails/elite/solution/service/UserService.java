@@ -31,6 +31,7 @@ public class UserService {
 			throw new RuntimeException("Email already exists");
 		}
 		String password = user.getPassword();
+		// TODO 7: enable password encoder in user service
 		user.setPassword(passwordEncoder.encode(password));
 		return userRepository.save(user);
 	}
