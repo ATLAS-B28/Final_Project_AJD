@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+// TODO 14: Test Error Scenarios. Write tests to ensure meaningful error responses for missing tasks or invalid operations.
 class ErrorHandlingTests {
 
 	@Mock

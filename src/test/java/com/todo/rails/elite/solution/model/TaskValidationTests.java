@@ -13,6 +13,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// TODO 12: Test Validation Logic. Write tests to verify that invalid inputs (e.g., empty title) are rejected.
 public class TaskValidationTests {
 	private Validator validator;
 
