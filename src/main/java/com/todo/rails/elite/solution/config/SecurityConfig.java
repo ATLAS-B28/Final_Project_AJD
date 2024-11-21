@@ -11,6 +11,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+/**
+ * Configuration class for security settings in the application.
+ *
+ * <p>This class defines various security configurations, including
+ * authentication, authorization, password encoding, and support for
+ * advanced HTTP methods like PUT and DELETE in forms. It utilizes
+ * Spring Security features to ensure secure access to application resources.</p>
+ *
+ * <h3>Key Components:</h3>
+ * <ul>
+ *   <li><strong>SecurityFilterChain:</strong> Configures which resources are publicly accessible,
+ *       sets up custom login and logout pages, and enforces authentication for restricted URLs.</li>
+ *   <li><strong>Password Encoder:</strong> Provides a {@link BCryptPasswordEncoder}
+ *       to securely hash user passwords with configurable strength.</li>
+ *   <li><strong>Hidden HTTP Method Filter:</strong> Enables the use of advanced HTTP methods
+ *       in HTML forms, like PUT and DELETE, by translating a hidden field's value into the desired HTTP method.</li>
+ * </ul>
+ *
+ * <h3>Usage:</h3>
+ * <p>This configuration is designed for a typical web application. Adjustments may be required
+ * for production environments, particularly with regard to CSRF protection and API security.</p>
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -82,24 +104,29 @@ public class SecurityConfig {
 		return http
 				.authorizeHttpRequests(
 						auth -> auth
-								// permit the /css/** , /js/** , /images/** URLS to all users
-								.requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+								// TODO 1: enforce authentication
+								//  permit the /css/** , /js/** , /images/** URLS to all users
+								.requestMatchers("/css/**").permitAll()
+								.requestMatchers("/js/**").permitAll()
+								.requestMatchers("/images/**").permitAll()
 
-								// permit the /register URL to all users
+
+								// TODO 2: make /login and /register publicly accessible
 								.requestMatchers("/register").permitAll()
 
-								// permit the /api/tasks/** to all users (NOT RECOMMENDED)
+
+								//  permit the /api/tasks/** to all users (NOT RECOMMENDED)
 								.requestMatchers("/api/tasks/**").permitAll()
 
-								// authenticate all other requests
+								//  authenticate all other requests
 								.anyRequest().authenticated()
 				)
 				.formLogin(
 						form -> form
-								// set the /login URL for the logic process
+								// TODO 3: set the /login URL for the login process
 								.loginPage("/login")
 
-								// set the redirect URL to / if login is successful
+								// TODO 4: set the redirect URL to / if login is successful
 								.defaultSuccessUrl("/", true)
 
 								// permit to all users
