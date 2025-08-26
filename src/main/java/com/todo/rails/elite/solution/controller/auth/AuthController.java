@@ -33,7 +33,7 @@ public class AuthController {
 	 */
 	@GetMapping
 	public String showRegisterPage(Model model) {
-		model.addAttribute("user", new User("", "", "", "USER"));
+		model.addAttribute("user", new User("", "", "", "ROLE_USER"));
 		return "register";
 	}
 
@@ -47,6 +47,7 @@ public class AuthController {
 	@PostMapping
 	public ModelAndView registerUser(@ModelAttribute("user") User user, Model viewModel) {
 		try {
+			user.setRoles("ROLES_USER");
 			userService.addUser(user);
 			return new ModelAndView("redirect:/login");
 		} catch (RuntimeException ex) {
